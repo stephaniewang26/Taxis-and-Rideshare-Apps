@@ -8,7 +8,36 @@
   </head>
   <body>
     {% include 'navbar.html' %}
+    <center>
     <h1>About</h1>
+    <h3>Description</h3>
+    <p>This project will be looking into the evolution of taxi rides in NYC from 2015-2022.
+      In my macro page, I will plot the monthly average number of trips per day for yellow taxis against high volume FHV (for hire vehicle) services. 
+      My datasets also contain monthly data for the number of unique vehicles for yellow taxis and FHV services, as well as the number of vehicles per day and number of hours on the road per vehicle per day.
+    </p>
+
+    <img src="https://cdn.discordapp.com/attachments/695300782102282332/1230704659786764339/IMG_2045.jpg?ex=66344a08&is=6621d508&hm=976e6d97fe686f0de173a0bdd9b396ab68c3099e3a61fa26e566dd9dd112755b&" width = "400">
+      
+    <p>
+      A piece of feedback I received was to make the title of the chart more clear, which I agree with. I'm going to color the lines differently so the taxi line is clearly emphasized.
+      I hope to make the chart simple to understand by having only two lines to look at and clear labels for those lines.
+    </p>
+
+    <p>
+      In my micro page, I will have a map of NYC that is shaded depending on the volume of taxi rides in certain areas. My dataset uses "taxi zones" to indicate locations, so the map can be divided up by taxi zone or by general borough.
+      I use datasets that take a random sample of 1000 taxi rides for each year, as this drastically limits the amount of data I need to store (it would otherwise be in the hundreds of millions for number of rows).
+    </p>
+
+    <img src="https://cdn.discordapp.com/attachments/695300782102282332/1230704660915032184/IMG_2047.jpg?ex=66344a08&is=6621d508&hm=2067753f52b745c1064f4e086e45273d9fa5b44cc68b80e410bfaf596cd62586&" width="400">
+    
+    <p>I didn't know I had to include a map SVG, so this is what my micro looked like before.</p>
+
+    <img src="https://cdn.discordapp.com/attachments/695300782102282332/1230704660915032184/IMG_2047.jpg?ex=66344a08&is=6621d508&hm=2067753f52b745c1064f4e086e45273d9fa5b44cc68b80e410bfaf596cd62586&" width="400">
+  
+    <p>One of the pieces of feedback I got was that it was confusing because my years didn't line up for the macro and micro pages. Thus, I'm changing both datasets to represent the same time period of 2015-2020.
+      I like having the updated location dataset for the micro page, as it gives me more room to play with the specificity with which I'm representing the data.
+    </p>
+  </center>
     {% include 'footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
