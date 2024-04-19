@@ -17,7 +17,9 @@
               Micro
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/micro">???</a></li>
+              {% for y in all_years %}
+                <li><a class="dropdown-item" href="/micro?{{y}}">{{y}}</a></li>
+              {% endfor %}
             </ul>
           </li>
         </ul>
