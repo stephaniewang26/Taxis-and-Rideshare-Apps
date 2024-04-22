@@ -13,10 +13,19 @@
     <h3>Vocabulary</h3>
     <ul>
       <li>NYC TLC - New York City Taxi and Limousine Commission</li>
-      <li>HVFHVS - stands for "high volume for hire vehicle service". According to the TLC, the only two bases included in this category are Uber and Lyft.</li>
+      <li>HVFHVS or FHV high volume - stands for "high volume for hire vehicle service". According to the TLC, the only two bases included in this category are Uber and Lyft.</li>
+      <li>FHV black car - TLC licensed bases that dispatch trips on a pre-arranged basis</li>
+      <li>FHV luxury limousine - TLC licensed bases that dispatch trips on a pre-arranged basis, where the base’s vehicles have a seating capacity of twenty (20) or fewer passengers.</li>
+      <li>FHV livery - Also known as "Community Cars"; TLC licensed bases that dispatch trips on a prearranged basis, and are required to offer passengers up-front flat fares.</li>
       <li>Taxi zone - TLC sorts taxi pickup and dropoff locations into "taxi zones". There are 263 taxi zones in NYC.</li>
     </ul>
     <h3>Data Pipeline</h3>
+    <p>All data is from NYC TLC. For the macro page, I used the Yellow Taxi, Green Taxi, and FHV Monthly Data aggregate dataset. I removed the rows for green taxi, FHV lux limo, FHV livery, and FHV black car because their numbers were negligible and I wanted to focus on modes of transportation that the general population of NYC uses.
+       I removed the "unique drivers" column because I thought that was redundant with the "unique vehicles" column. I also removed the "avg days drivers on road", "avg days vehicles on road", and "avg days per day per driver" columns because they were redundant and harder for readers to immediately process and understand.
+       Finally, I removed the "percent of trips paid with credit card" and "shared trips per day" columns because they weren't relevant to what I wanted to analyze, which was more about the volume of trips.
+    </p>
+    <p>For the micro page, I used yearly taxi trip data. Because these datasets included every single taxi ride taken that year, there were hundreds of millions of lines per dataset. Instead of combing through that data, I used the NYC Open Data API endpoint to randomly extract 1000 rows from each dataset into the json format.</p>
+
     <h3>Description</h3>
     <p>This project will be looking into the evolution of taxi rides in NYC from 2015-2022.
       In my macro page, I will plot the monthly average number of trips per day for yellow taxis against high volume FHV (for hire vehicle) services. 
@@ -32,7 +41,6 @@
 
     <p>
       In my micro page, I will have a map of NYC that is shaded depending on the volume of taxi rides in certain areas. My dataset uses "taxi zones" to indicate locations, so the map can be divided up by taxi zone or by general borough.
-      I use datasets that take a random sample of 1000 taxi rides for each year, as this drastically limits the amount of data I need to store (it would otherwise be in the hundreds of millions for number of rows).
     </p>
 
     <img src="https://cdn.discordapp.com/attachments/695300782102282332/1230704660915032184/IMG_2047.jpg?ex=66344a08&is=6621d508&hm=2067753f52b745c1064f4e086e45273d9fa5b44cc68b80e410bfaf596cd62586&" width="400">
