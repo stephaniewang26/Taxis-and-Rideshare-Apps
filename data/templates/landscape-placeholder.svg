@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100" width="1800" height="1100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1100" width="1280" height="1100">
 
      <text class="graphtitle" x="150" y="90">Trips Per Day for Taxis and HVFHS in NYC</text>
 
@@ -7,12 +7,9 @@
      {% endfor %}
      <text x="1420" y="445">Average</text> -->
 
-     {% for point in taxiendpoints %}
-     <line class="line" x1="{{250+loop.index0*(1400/84)}}" y1="{{800-((point[0]-40)*10)}}" x2="{{200+(loop.index0+1)*(1400/84)}}" y2="{{800-((point[1]-40)*10)}}" stroke-linecap="round"/>
-     {% endfor %}
 
      {% for year in all_years %}
-     <text x="{{250+loop.index0*200}}" y="950">{{year}}</text>
+     <text x="{{250+loop.index0*120}}" y="950">{{year}}</text>
      {% endfor %}
 
      <text class="axislabel" x="950" y="1000">Years</text>
@@ -22,7 +19,7 @@
      {% endfor %}
 
      <line class="axis" x1="250" y1="200" x2="250" y2="900" />
-     <line class="axis" x1="250" y1="900" x2="1650" y2="900" /> 
+     <line class="axis" x1="250" y1="900" x2="1100" y2="900" /> 
 
      <text class="axislabel" transform="translate(100,600) rotate(270)">Trips Per Day</text>
 
