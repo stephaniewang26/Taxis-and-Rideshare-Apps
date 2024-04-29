@@ -4,4 +4,8 @@
     stroke-width: 3;
 }
 
-
+.taxiline {
+    stroke: #222222;
+    stroke-width: 3;
+    opacity: .9;
+  }
