@@ -1,27 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1100" width="1280" height="1100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1100" width="1400" height="1100">
 
      <text class="graphtitle" x="150" y="90">Trips Per Day for Taxis and HVFHS in NYC</text>
 
 
-     
+     <g class="taxiline">
      {% for point in taxiendpoints %}
-     <line class="taxiline" x1="{{250+loop.index0*10}}" y1="{{point[0]/10000}}" x2="{{250+(loop.index0+1)*10}}" y2="{{point[1]/10000}}" stroke-linecap="round"/>
+     <line x1="{{250+loop.index0*10}}" y1="{{600-(point[0]/2000)}}" x2="{{250+(loop.index0+1)*10}}" y2="{{600-(point[1]/2000)}}" stroke-linecap="round"/>
      {% endfor %}
+     </g>
+     <text x="1100" y="550">Yellow taxi</text>
 
+     <g class="rideshareline">
+     {% for point in rideshareendpoints %}
+     <line x1="{{250+loop.index0*10}}" y1="{{600-(point[0]/2000)}}" x2="{{250+(loop.index0+1)*10}}" y2="{{600-(point[1]/2000)}}" stroke-linecap="round"/>
+     {% endfor %}
+     </g>
+     <text x="1100" y="300">FVHFS</text>
 
      {% for year in all_years %}
-     <text x="{{250+loop.index0*120}}" y="950">{{year}}</text>
+     <text x="{{250+loop.index0*120}}" y="650">{{year}}</text>
      {% endfor %}
 
-     <text class="axislabel" x="670" y="1000">Years</text>
+     <text class="axislabel" x="670" y="700">Years</text>
 
      {% for trips in trips_increment %}
-     <text x="150" y="{{200+loop.index0*100}}">{{trips}}</text>
+     <text x="150" y="{{200+loop.index0*50}}">{{trips}}</text>
      {% endfor %}
 
-     <line class="axis" x1="250" y1="200" x2="250" y2="900" />
-     <line class="axis" x1="250" y1="900" x2="1200" y2="900" /> 
+     <text class="axislabel" transform="translate(100,400) rotate(270)">Trips Per Day</text>
 
-     <text class="axislabel" transform="translate(100,600) rotate(270)">Trips Per Day</text>
+     <line class="axis" x1="250" y1="200" x2="250" y2="600" />
+     <line class="axis" x1="250" y1="600" x2="1080" y2="600" /> 
+
+     
 
 </svg>

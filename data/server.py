@@ -35,7 +35,6 @@ def macro():
     tripsbyk = ["800,000","700,000","600,000","500,000","400,000","300,000","200,000","100,000","0"]
 
     taxi_line_endpoints =[]
-    taxi_trip_values = {}
     connect_x = None
     for year in taxi_data:
         taxi_data[year] = dict(reversed(taxi_data[year].items()))
@@ -56,13 +55,31 @@ def macro():
     
     print(taxi_line_endpoints)
     
+    rideshare_endpoints =[]
+    connect_x = None
+    for year in gen_rideshare_data:
+        gen_rideshare_data[year] = dict(reversed(gen_rideshare_data[year].items()))
+        for month in gen_rideshare_data[year]:
+            if month == "1" and connect_x != None:
+                stop_x = gen_rideshare_data[year][month]["trips per day"]
+                rideshare_endpoints.append([float(connect_x),float(stop_x)])
+
+                start_x = gen_rideshare_data[year][month]["trips per day"]
+                stop_x = gen_rideshare_data[year][str(int(month)+1)]["trips per day"]
+                rideshare_endpoints.append([float(start_x),float(stop_x)])
+            elif month == "12":
+                connect_x = gen_rideshare_data[year][month]["trips per day"]
+            else:
+                start_x = gen_rideshare_data[year][month]["trips per day"]
+                stop_x = gen_rideshare_data[year][str(int(month)+1)]["trips per day"]
+                rideshare_endpoints.append([float(start_x),float(stop_x)])
 
     # for i in range(len(all_years)-1): # make it easy to dynamically generate a line graph
     #     start_y = all_years[i] #generate endpoints for each line segment
     #     stop_y = all_years[i+1]
 
     #     taxi_line_endpoints.append([taxi_trip_values[start_y],taxi_trip_values[stop_y]])
-    return render_template('macro.html',year=requested_year, all_years=all_years, trips_increment = tripsbyk, taxiendpoints = taxi_line_endpoints)
+    return render_template('macro.html',year=requested_year, all_years=all_years, trips_increment = tripsbyk, taxiendpoints = taxi_line_endpoints, rideshareendpoints = rideshare_endpoints)
 
 @app.route('/micro')
 def micro():
