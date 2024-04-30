@@ -1,5 +1,6 @@
 import json
 
+#https://medium.com/@abdelfatahmennoun4/how-to-combine-multiple-json-files-into-a-single-json-file-c2ed3dc372c2
 # Create a list of all the JSON files that you want to combine.
 json_files = []
 ending = "_yellowtaxi.json"
