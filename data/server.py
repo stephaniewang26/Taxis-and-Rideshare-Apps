@@ -88,6 +88,34 @@ def micro():
     f.close()
     requested_year = request.args.get('year')
     all_years = sorted(list(gen_rideshare_data.keys()))
+
+    # set the style in the svg
+    # https://austinpoor.com/blog/plots-with-jinja/
+    taxi_zones = []
+    for i in range(1,266):
+        taxi_zones.append(i)
+    #print(taxi_zones)
+
+    #f = open("data/yearly_yellowtaxi_full_json/combined_yellowtaxi.json")
+    f = open("combined.json")
+    combined_data = json.load(f)
+    f.close()
+
+    #pickup
+
+    for year in combined_data:
+        # make a dictionary
+        # zone id:# of trips
+        if type(year) is dict:
+            print(year.keys())
+            # REFORMAT OTHER YEARS (NOT JUST 2018) 
+
+    #drop off
+        
+    color_key = {
+
+    }
+    
     return render_template('micro.html',year=requested_year, all_years=all_years)
 
 app.run(debug=True)
