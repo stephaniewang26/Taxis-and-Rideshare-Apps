@@ -102,20 +102,46 @@ def micro():
     f.close()
 
     #pickup
+    year_data = combined_data[requested_year]
+    pu_zones_data = {}
+    # makes a dictionary
+    # zone id:# of trips
+    for zone in taxi_zones:
+        pu_zones_data[zone] = 0
 
-    for year in combined_data:
-        # make a dictionary
-        # zone id:# of trips
-        if type(year) is dict:
-            print(year.keys())
-            # REFORMAT OTHER YEARS (NOT JUST 2018) 
+    print(pu_zones_data)
+
+    for entry in year_data:
+        current_zone = entry["pulocationid"]
+        pu_zones_data[int(current_zone)] += 1
+
+    #get total entries
+    total_entries = 0
+    for entry in pu_zones_data:
+        total_entries += pu_zones_data[entry]
+
+    print(max(pu_zones_data,key=pu_zones_data.get),requested_year)
+    print(max(pu_zones_data.values()))
+    print(total_entries)
+
+    #get percentages for each zone
+    for entry in pu_zones_data:
+        pu_zones_data[entry] = ((pu_zones_data[entry])/total_entries)*1000
+    
+    print(max(pu_zones_data.values()))
+    print(pu_zones_data)
 
     #drop off
         
     color_key = {
-
+        #0 #F8E7EE
+        #2 #E9C0D1
+        #4 #D791AE
+        #6 #C86890
+        #8 #B83D70
+        #10 #A20245
     }
     
-    return render_template('micro.html',year=requested_year, all_years=all_years)
+    return render_template('micro.html',year=requested_year, all_years=all_years, all_zones = taxi_zones, pu_data = pu_zones_data)
 
 app.run(debug=True)

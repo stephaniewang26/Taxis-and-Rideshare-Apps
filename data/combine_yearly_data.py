@@ -12,12 +12,14 @@ for i in range (2016,2023):
 print(json_files)
 
 # Create an empty list to store the Python objects.
-python_objects = []
+python_objects = {}
 
+year = 2015
 # Load each JSON file into a Python object.
 for json_file in json_files:
+    year += 1
     with open(json_file, "r") as f:
-        python_objects.append(json.load(f))
+        python_objects[year] = (json.load(f))
 
 # Dump all the Python objects into a single JSON file.
 with open("combined.json", "w") as f:
