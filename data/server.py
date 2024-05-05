@@ -122,24 +122,26 @@ def micro():
 
     print(max(pu_zones_data,key=pu_zones_data.get),requested_year)
     print(max(pu_zones_data.values()))
-    print(total_entries)
+    #print(total_entries)
 
     #get percentages for each zone
     for entry in pu_zones_data:
-        pu_zones_data[entry] = ((pu_zones_data[entry])/total_entries)*1000
+        pu_zones_data[entry] = ((pu_zones_data[entry])/total_entries)*100
     
     print(max(pu_zones_data.values()))
-    print(pu_zones_data)
+    #print(pu_zones_data)
 
     #drop off
         
     color_key = {
-        #0 #F8E7EE
-        #2 #E9C0D1
-        #4 #D791AE
-        #6 #C86890
-        #8 #B83D70
-        #10 #A20245
+        #0-0.05 #F8E7EE
+        #0.05-0.1 #E9C0D1
+        #0.1-0.5 #D791AE
+        #0.5-1 #C86890
+        #1-3 #B83D70
+        #3-5 #A20245
+        #5-7 #690A31
+        #7-10 #3E051D
     }
     
     return render_template('micro.html',year=requested_year, all_years=all_years, all_zones = taxi_zones, pu_data = pu_zones_data)

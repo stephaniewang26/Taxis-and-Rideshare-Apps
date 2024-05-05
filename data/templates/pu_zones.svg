@@ -21,10 +21,40 @@
     for (var i=1; i<264; i++){
         var zone = "z"+String(i)
         var pu_data = {{pu_data | tojson}}
-        var current_pu_data = 100-(pu_data[i])
-        document.getElementById(zone).style.fill = "hsl(335, 55%," + current_pu_data+"%)";
+        var current_pu_data = pu_data[i]
+
+        if (current_pu_data >= 0.00 && current_pu_data <= 0.01){
+            document.getElementById(zone).style.fill = "#FFFFFF";
+        }
+        else if (current_pu_data > 0.01 && current_pu_data <= 0.03){
+            document.getElementById(zone).style.fill = "#F0DFE6";
+        }
+        else if (current_pu_data > 0.03 && current_pu_data <= 0.05){
+            document.getElementById(zone).style.fill = "#E1C8D2";
+        }
+        else if (current_pu_data > 0.05 && current_pu_data <= 0.3){
+            document.getElementById(zone).style.fill = "#CDAAB8";
+        }
+        else if (current_pu_data > 0.3 && current_pu_data <= 1){
+            document.getElementById(zone).style.fill = "#B6879A";
+        }
+        else if (current_pu_data > 1 && current_pu_data <= 2){
+            document.getElementById(zone).style.fill = "#9F647C";
+        }
+        else if (current_pu_data > 2 && current_pu_data <= 3){
+            document.getElementById(zone).style.fill = "#93526D";
+        }
+        else if (current_pu_data > 3 && current_pu_data <= 4){
+            document.getElementById(zone).style.fill = "#863E5C";
+        }
+        else if (current_pu_data > 4 && current_pu_data <= 6){
+            document.getElementById(zone).style.fill = "#6F1B3E";
+        }
+        else if (current_pu_data > 6 && current_pu_data <= 7){
+            document.getElementById(zone).style.fill = "#5D0027";
+        }
         
-        
+
     }
 </script>
 </svg>
