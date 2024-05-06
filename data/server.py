@@ -96,8 +96,7 @@ def micro():
         taxi_zones.append(i)
     #print(taxi_zones)
 
-    #f = open("data/yearly_yellowtaxi_full_json/combined_yellowtaxi.json")
-    f = open("combined.json")
+    f = open("data/yearly_yellowtaxi_full_json/combined_yellowtaxi.json")
     combined_data = json.load(f)
     f.close()
 
