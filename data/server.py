@@ -3,6 +3,7 @@ from flask import Flask
 from flask import request
 from flask import render_template
 import json
+import calendar
 
 #test
 
@@ -53,7 +54,7 @@ def macro():
                 stop_x = taxi_data[year][str(int(month)+1)]["trips per day"]
                 taxi_line_endpoints.append([float(start_x),float(stop_x)])
     
-    print(taxi_line_endpoints)
+    print(taxi_data)
     
     rideshare_endpoints =[]
     connect_x = None
@@ -74,12 +75,37 @@ def macro():
                 stop_x = gen_rideshare_data[year][str(int(month)+1)]["trips per day"]
                 rideshare_endpoints.append([float(start_x),float(stop_x)])
 
-    # for i in range(len(all_years)-1): # make it easy to dynamically generate a line graph
-    #     start_y = all_years[i] #generate endpoints for each line segment
-    #     stop_y = all_years[i+1]
+    peaktaxirides = 0
+    leasttaxirides = 5000000
+    for pair in taxi_line_endpoints:
+        if min(pair) < leasttaxirides:
+            leasttaxirides = int(min(pair))
+        for number in pair:
+            if number > peaktaxirides:
+                peaktaxirides = int(number)
+            
+    print(peaktaxirides,leasttaxirides)
 
-    #     taxi_line_endpoints.append([taxi_trip_values[start_y],taxi_trip_values[stop_y]])
-    return render_template('macro.html',year=requested_year, all_years=all_years, trips_increment = tripsbyk, taxiendpoints = taxi_line_endpoints, rideshareendpoints = rideshare_endpoints)
+    peaktaximonth = None
+    peaktaxiyear = None
+    leasttaximonth = None
+    leasttaxiyear = None
+    for year in taxi_data:
+        for month in taxi_data[year]:
+            print(taxi_data[year][month]["trips per day"])
+            if taxi_data[year][month]["trips per day"] == str(peaktaxirides):
+                peaktaximonth = month
+                peaktaxiyear = year
+            elif taxi_data[year][month]["trips per day"] == str(leasttaxirides):
+                leasttaximonth = month
+                leasttaxiyear = year
+            
+
+    peaktaximonth = calendar.month_name[int(peaktaximonth)]
+    leasttaximonth = calendar.month_name[int(leasttaximonth)]
+    
+
+    return render_template('macro.html',year=requested_year, all_years=all_years, trips_increment = tripsbyk, taxiendpoints = taxi_line_endpoints, rideshareendpoints = rideshare_endpoints, peaktaxirides = peaktaxirides, peaktaximonth = peaktaximonth, peaktaxiyear= peaktaxiyear, leasttaxirides=leasttaxirides,leasttaximonth=leasttaximonth,leasttaxiyear=leasttaxiyear)
 
 @app.route('/micro')
 def micro():
@@ -130,19 +156,33 @@ def micro():
     print(max(pu_zones_data.values()))
     #print(pu_zones_data)
 
-    #drop off
-        
-    color_key = {
-        #0-0.05 #F8E7EE
-        #0.05-0.1 #E9C0D1
-        #0.1-0.5 #D791AE
-        #0.5-1 #C86890
-        #1-3 #B83D70
-        #3-5 #A20245
-        #5-7 #690A31
-        #7-10 #3E051D
-    }
+
+    f = open("taxi_zone.json")
+    zone_borough_data = json.load(f)
+    f.close()
+
+    mostboroughnum = 0.0
+    leastboroughnum = 100.0
+    boroughstats = {}
+    for entry in pu_zones_data:
+        for borough in zone_borough_data:
+            if str(entry) in zone_borough_data[borough]:
+                if borough not in boroughstats:
+                    boroughstats[borough] = 0
+                boroughstats[borough] += pu_zones_data[entry]
     
-    return render_template('micro.html',year=requested_year, all_years=all_years, all_zones = taxi_zones, pu_data = pu_zones_data)
+    for borough in boroughstats:
+        if boroughstats[borough] < leastboroughnum:
+            leastboroughnum = boroughstats[borough]
+            leastborough = borough
+        if boroughstats[borough] > mostboroughnum:
+            mostboroughnum = boroughstats[borough]
+            mostborough = borough
+    print(boroughstats)
+    print(mostborough,leastborough)
+
+    
+    
+    return render_template('micro.html',year=requested_year, all_years=all_years, all_zones = taxi_zones, pu_data = pu_zones_data, mostborough = mostborough, leastborough = leastborough, mostboroughnum = mostboroughnum, leastboroughnum = leastboroughnum)
 
 app.run(debug=True)
