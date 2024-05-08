@@ -50,18 +50,22 @@
     <br>
     <br>
     <p>
-      All data is from NYC TLC. For the taxi and HVFHVS line graph, I used the Yellow Taxi, Green Taxi, and FHV Monthly Data aggregate dataset.
+      All data is from NYC TLC. For the taxi and HVFHVS line graph, I used the <a href="https://www.nyc.gov/site/tlc/about/aggregated-reports.page">Yellow Taxi, Green Taxi, and FHV Monthly Data aggregate dataset</a>.
     </p>
     <ol>
       <li>I removed the rows for green taxi, FHV lux limo, FHV livery, and FHV black car because their numbers were negligible and I wanted to focus on modes of transportation that the general population of NYC uses.</li>
       <li>I removed the "unique drivers" column because I thought that was redundant with the "unique vehicles" column.</li>
       <li>I also removed the "avg days drivers on road", "avg days vehicles on road", and "avg days per day per driver" columns because they were redundant and harder for readers to immediately process and understand.</li>
       <li>I removed the "percent of trips paid with credit card" and "shared trips per day" columns because they weren't relevant to what I wanted to analyze, which was more about the volume of trips.</li>
+      <li>Finally, I ran the CSV file through a Python script that created a JSON dictionary, with monthly data for each year, and each column and value being a key/value pair.</li>
     </ol>
     <br>
-    <p>For the maps, I used yearly yellow taxi trip data. Because these datasets included every single taxi ride taken that year, there were hundreds of millions of lines per dataset.</p>
+    <a href="https://github.com/stephaniewang26/Taxis-and-Rideshare-Apps/blob/main/data/combine_yearly_data.py">Link to Combine Yearly Data File</a>
+    <br>
+    <br>
+    <p>For the maps, I used <a href="https://data.cityofnewyork.us/browse?q=yellow%20taxi%20trip%20data&sortBy=relevance">yearly yellow taxi trip data</a>. Because these datasets included every single taxi ride taken that year, there were hundreds of millions of lines per dataset.</p>
     <ol>
-      <li>Instead of combing through that data, I used the NYC Open Data API endpoint to randomly extract 100,000 rows from each year's dataset into the json format.</li>
+      <li>Instead of combing through that data, I used the NYC Open Data API endpoint to randomly extract 100,000 rows from each year's dataset into the JSON format. I chose 100,000 rows in order to ensure that every taxi zone was included in my data, so I didn't falsely mark a zone as having 0 taxi trips.</li>
       <li>Then, I used Python to combine the data into a large dictionary, with the keys being each year. This made the data easier to template.</li>
     </ol>
 

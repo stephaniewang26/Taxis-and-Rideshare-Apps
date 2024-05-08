@@ -1,5 +1,5 @@
 <svg width="1100" height="900">
-<text class="graphtitlemicro" x="40" y="80" fill="white">Yellow Taxi Trip Concentrations in NYC Taxi Zones - {{year}}</text>
+<text class="graphtitlemicro" x="40" y="80" fill="white">Volume of Yellow Taxi Trips in NYC Taxi Zones - {{year}}</text>
 
 <rect width="70" height="20" x="100" y="430" rx="10" ry="10" fill="#FFFFFF" /></rect>
 <rect width="70" height="20" x="100" y="400" rx="10" ry="10" fill="#F0DFE6" /></rect>

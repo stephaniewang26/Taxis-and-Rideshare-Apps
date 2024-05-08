@@ -4,6 +4,8 @@ from flask import request
 from flask import render_template
 import json
 import calendar
+import math
+
 
 #test
 
@@ -181,6 +183,15 @@ def micro():
     print(boroughstats)
     print(mostborough,leastborough)
 
+    def truncate(number, digits) -> float:
+        nbDecimals = len(str(number).split('.')[1]) 
+        if nbDecimals <= digits:
+            return number
+        stepper = 10.0 ** digits
+        return math.trunc(stepper * number) / stepper
+
+    mostboroughnum = truncate(mostboroughnum,3)
+    leastboroughnum = truncate(leastboroughnum,3)
     
     
     return render_template('micro.html',year=requested_year, all_years=all_years, all_zones = taxi_zones, pu_data = pu_zones_data, mostborough = mostborough, leastborough = leastborough, mostboroughnum = mostboroughnum, leastboroughnum = leastboroughnum)
