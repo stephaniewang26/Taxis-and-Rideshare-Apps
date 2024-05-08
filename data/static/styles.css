@@ -72,7 +72,7 @@ body{
 }
 
 .macro-body{
-    background-color: #ebebeb;
+    background-color: #fbf9ea;
     color: rgb(0, 0, 0);
 }
 
@@ -95,12 +95,12 @@ li{
 }
 
 .taxiline{
-    stroke: #9a2903;
+    stroke: #12128b;
     stroke-width: 3;
 }
 
 .rideshareline{
-    stroke: #829fc3;
+    stroke: #c382bb;
     stroke-width: 3;
 }
 
@@ -125,4 +125,34 @@ li{
     font-family: "Ethnocentric";
     font-size: 24px;
     color:white;
+}
+
+#logo{
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 700;
+}
+
+.row{
+    background-color: #222222;
+}
+
+#vocab{
+    padding-top: 0px;
+}
+
+
+.dropdown-menu > li > a:hover {
+    background-image: none;
+    background-color: rgb(224, 196, 12);
+}
+
+a{
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: rgb(224, 196, 12);
+}
+
+a:hover{
+    color: rgb(163, 144, 21);
 }
